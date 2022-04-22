@@ -1,0 +1,12 @@
+<div class="container">
+  <%= form_for @customer, url: {action: :create} do |f| %>
+      <div>
+        <h3>Add a Customer</h3>
+      </div>
+      <%= render :partial => 'customers/form', :locals => { :f => f } %>
+      <div class='float-right'>
+        <%= link_to 'Back', { controller: 'customers', action: 'index', class: 'form-control btn btn-primary'}, class: 'btn btn-sm btn-primary' %>
+        <%= f.submit 'Create', class:"btn btn-sm btn-success" %>
+      </div>
+  <% end %>
+</div>

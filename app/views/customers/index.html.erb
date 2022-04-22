@@ -1,0 +1,44 @@
+
+ <div class="container">
+    <h3>Customer Listing</h3>
+   
+      <div>
+        <%= link_to 'Add Customer', new_customer_path , class: "btn btn-sm btn-primary" %>
+      </div>
+      <br>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @customers.present? %>
+        <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
+              <td><%= customer.name %></td>
+              <td><%= customer.email %></td>
+                <div>
+                <td>
+                  <%= link_to 'Show', customer_path(customer), class: 'btn btn-sm btn-primary' %>
+                  <%= link_to 'Edit', edit_customer_path(customer), class: 'btn btn-sm btn-secondary' %>
+                  <%= link_to 'Delete', customer_path(customer), data: { turbo_method: :delete, turbo_confirm: 'Delete customer with email: ' + customer.email }, class: 'btn btn-sm btn-danger' %>
+                </div>
+              </td>
+            </tr>
+        <% end %>
+      <% else %>
+        <tr>
+        <td colspan='3'> No Records Found!</td>
+        </tr>
+      <% end %>
+      
+      </tbody>
+    </table>
+    <br>
+    <%= paginate @customers, remote: true %>
+    </div>
